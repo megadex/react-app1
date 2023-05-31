@@ -45,53 +45,6 @@ app.get('/api/products/:id', (request, response) => {
   }));
 });
 
-app.get('/api/products-cart', (request, response) => {
-  response.send(JSON.stringify({
-    data: productsCartData,
-  }));
-});
-
-app.post('/api/products-cart', (request, response) => {
-  const productCart = request.body.productCart;
-
-  const index = productsCartData.length;
-  productsCartData.splice(index, 0, productCart);
-
-  response.send(JSON.stringify({
-    data: productsCartData,
-  }));
-});
-
-app.delete('/api/del-product-cart/:id', (request, response) => {
-  const productId = parseInt(request.params.id);
-
-  const index = productsCartData.findIndex(item => item.id === productId);
-  productsCartData.splice(index, 1);
-
-  response.send(JSON.stringify({
-    data: productsCartData,
-  }));
-});
-
-app.delete('/api/clean-products-cart', (request, response) => {
-  productsCartData.splice(0);
-
-  response.send(JSON.stringify({
-    data: productsCartData,
-  }));
-});
-
-app.put('/api/product-cart', (request, response) => {
-  const productCart = request.body.productCart;
-
-  const index = productsCartData.findIndex(item => item.id === productCart.id);
-  productsCartData.splice(index, 1, productCart);
-
-  response.send(JSON.stringify({
-    data: productsCartData,
-  }));
-});
-
 app.post('/api/products-checkout', (request, response) => {
   const productsCheckout = request.body.productsCheckout;
 
